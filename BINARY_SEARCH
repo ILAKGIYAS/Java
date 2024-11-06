@@ -1,0 +1,41 @@
+import java.util.*;
+import java.util.Scanner;
+public class Main {
+    public static int calculate(int[] num,int a)
+    {
+        int left=0;
+        int right=num.length-1;
+        int mid;
+        while(left<=right)
+        {
+            mid=left+(right-left)/2;
+            if(num[mid]==a){
+            return mid;
+            }
+            else if(a<num[mid])
+            {
+                right=mid-1;
+            }
+            else
+            {
+                left=mid+1;
+            }
+        }
+            return -1;
+        }
+    
+    
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int[] num={20,27,30,40,50,55,65,75};
+        System.out.println("Enter the element to find in array:");
+        int a=sc.nextInt();
+        int res=calculate(num,a);
+        if(res!=-1)
+        System.out.println("The element found in "+res);
+        else
+        System.out.println("Element not found in array");
+    }
+    }
+    

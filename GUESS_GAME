@@ -1,0 +1,70 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        List<Integer> n = new ArrayList<>();
+        Random r = new Random();
+        while (n.size() < 5) {
+            int d = r.nextInt(10) + 1;
+            if (!n.contains(d)) {
+                n.add(d);
+            }
+        }
+        System.out.println("Enter Player1:");
+        String p1 = sc.nextLine();
+        System.out.println("Enter Player2:");
+        String p2 = sc.nextLine();
+        
+        System.out.println("Hello " + p1 + " and " + p2);
+        System.out.println("The computer has some five integers in mind");
+        System.out.println("You both have three choices");
+        int s1 = 0, s2 = 0;
+        List<Integer> player1 = new ArrayList<>();
+        List<Integer> player2 = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            System.out.print(p1 + ", enter your choice: ");
+            int guess1 = sc.nextInt();
+            while (player1.contains(guess1)) {
+                System.out.println("Already exists. Choose another number.");
+                guess1 = sc.nextInt();
+            }
+            player1.add(guess1); 
+
+            if (n.contains(guess1)) {
+                System.out.println("CORRECT");
+                s1++;
+            } else {
+                System.out.println("WRONG");
+            }
+    
+            System.out.print(p2 + ", enter your choice: ");
+            int guess2 = sc.nextInt();
+            while (player2.contains(guess2)) {
+                System.out.println("Already exists. Choose another number.");
+                guess2 = sc.nextInt();
+            }
+            player2.add(guess2); 
+
+            if (n.contains(guess2)) {
+                System.out.println("CORRECT");
+                s2++; 
+            } else {
+                System.out.println("WRONG");
+            }
+        }
+        System.out.println("Computer's numbers: " + n);
+        System.out.println(p1 + "'s score: " + s1);
+        System.out.println(p2 + "'s score: " + s2);
+
+        if (s1 > s2) {
+            System.out.println(p1 + " wins!");
+        } else if (s2 > s1) {
+            System.out.println(p2 + " wins!");
+        } else {
+            System.out.println("It's a tie!");
+        }
+
+        sc.close();
+    }
+}
